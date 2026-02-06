@@ -1,0 +1,15 @@
+name = "lean_lec_feb9"
+version = "0.1.0"
+defaultTargets = ["lean_lec_feb9"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.27.0"
+
+[[lean_lib]]
+name = "lean_lectures"
+
+[[lean_exe]]
+name = "lean_lec_feb9"
+root = "Main"
