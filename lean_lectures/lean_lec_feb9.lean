@@ -91,7 +91,8 @@ theorem f_eq_square : ∀ n, f n = n^2 := by
   rw [ihypo]
   ring
   -- ring checks for identities in a general ring
-#check f_eq_square --not sure what this does
+
+#check f_eq_square -- We can get VSCode to display the type of our theorem.
 
 /-
 ## 5. Harder proof: Show (p-1)! = -1 mod p
@@ -104,14 +105,59 @@ Our proof we will recreate: pair up all the elements  other than 1 and -1 via {x
 In the mathlab library you can find this as theorem prod_univ_units_id_eq_neg_one
 -/
 
-theorem LecFeb9 {K} [CommRing K] [IsDomain K] [Fintype Kˣ] :
-    ∏ x : Kˣ, x = (-1 : Kˣ) := by
+/-
+We will want to use the following theorems from Mathlib, plus a few others.
+-/
+#check Finset.prod_involution
+#check Units.inv_eq_self_iff
+#check FiniteField.prod_univ_units_id_eq_neg_one
 
+theorem LecFeb9 {K} [CommRing K] [IsDomain K] [Fintype Kˣ] [DecidableEq Kˣ] :
+    ∏ x : Kˣ, x = (-1 : Kˣ) := by
   --first we remove 1 and -1 from our list
-  have (∏ x ∈ (@univ Kˣ _).erase (1,-1), x) = 1
+  let K_times_without_minus_1 : Finset Kˣ := Finset.univ.erase (-1)
+  have h : (∏ x ∈ K_times_without_minus_1, x) = 1 := by
+    -- Fill in proof here
+    sorry
+  -- Use h to complete proof here
+  sorry
 
 
 /-
+### George's Expanded Proof for clarity / illustration purposes.
+theorem LecFeb9 {K} [CommRing K] [IsDomain K] [Fintype Kˣ] [DecidableEq Kˣ] :
+    ∏ x : Kˣ, x = (-1 : Kˣ) := by
+
+  --first we remove 1 and -1 from our list
+  let K_times_without_minus_1 : Finset Kˣ := Finset.univ.erase (-1)
+  have h : (∏ x ∈ K_times_without_minus_1, x) = 1 := by
+    refine Finset.prod_involution (s := K_times_without_minus_1) (f := fun x => x) (fun x _ => x⁻¹) ?_ ?_ ?_ ?_
+    · simp
+    · intro a ha hax
+      simp [Units.inv_eq_self_iff]
+      simp at hax
+      refine ⟨hax, ?_⟩
+      unfold K_times_without_minus_1 at ha
+      apply Finset.ne_of_mem_erase at ha
+      exact ha
+    · intro a ha
+      simp [K_times_without_minus_1]
+      unfold K_times_without_minus_1 at ha
+      apply Finset.ne_of_mem_erase at ha
+      rw [inv_eq_iff_eq_inv]
+      exact ha
+    · intro a ha
+      simp
+  simp[K_times_without_minus_1] at h
+  rw[<- Finset.prod_erase_eq_div (by simp)] at h
+  rw[<- mul_left_cancel_iff (a := -1) ] at h
+  rw[Finset.mul_prod_erase (a := -1) (s := Finset.univ) (f := fun x => x) (by simp)] at h
+  simp [h]
+-/
+
+/-
+### Mathlib's Short proof
+theorem prod_univ_units_id_eq_neg_one [CommRing K] [IsDomain K] [Fintype Kˣ] :
     ∏ x : Kˣ, x = (-1 : Kˣ) := by
   classical
     have : (∏ x ∈ (@univ Kˣ _).erase (-1), x) = 1 :=
@@ -120,6 +166,7 @@ theorem LecFeb9 {K} [CommRing K] [IsDomain K] [Fintype Kˣ] :
         (fun a => by simp [@inv_eq_iff_eq_inv _ _ a]) (by simp)
     rw [← insert_erase (mem_univ (-1 : Kˣ)), prod_insert (notMem_erase _ _), this, mul_one]
 -/
+
 namespace lean_lectures
 
 def feb9Message : String :=
