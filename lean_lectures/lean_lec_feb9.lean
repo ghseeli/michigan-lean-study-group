@@ -106,7 +106,7 @@ theorem f_eq_square : ∀ n, f n = n^2 := by
 ## 5. Harder proof: Show (p-1)! = -1 mod p
 Here we will walk through a harder proof
 
-The claim is that in a ring with finitely many units, the product over all the units is -1.
+The claim is that in a domain with finitely many units, the product over all the units is -1.
 
 Our proof we will recreate: pair up all the elements  other than 1 and -1 via {x,x^{-1}}. Each product of those two elements is 1.
 
