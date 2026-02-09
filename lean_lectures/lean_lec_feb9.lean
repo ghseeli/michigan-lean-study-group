@@ -93,8 +93,33 @@ theorem f_eq_square : ∀ n, f n = n^2 := by
   -- ring checks for identities in a general ring
 #check f_eq_square --not sure what this does
 
+/-
+## 5. Harder proof: Show (p-1)! = -1 mod p
+Here we will walk through a harder proof
+
+The claim is that in a ring with finitely many units, the product over all the units is -1.
+
+Our proof we will recreate: pair up all the elements  other than 1 and -1 via {x,x^{-1}}. Each product of those two elements is 1.
+
+In the mathlab library you can find this as theorem prod_univ_units_id_eq_neg_one
+-/
+
+theorem LecFeb9 {K} [CommRing K] [IsDomain K] [Fintype Kˣ] :
+    ∏ x : Kˣ, x = (-1 : Kˣ) := by
+
+  --first we remove 1 and -1 from our list
+  have (∏ x ∈ (@univ Kˣ _).erase (1,-1), x) = 1
 
 
+/-
+    ∏ x : Kˣ, x = (-1 : Kˣ) := by
+  classical
+    have : (∏ x ∈ (@univ Kˣ _).erase (-1), x) = 1 :=
+      prod_involution (fun x _ => x⁻¹) (by simp)
+        (fun a => by simp +contextual [Units.inv_eq_self_iff])
+        (fun a => by simp [@inv_eq_iff_eq_inv _ _ a]) (by simp)
+    rw [← insert_erase (mem_univ (-1 : Kˣ)), prod_insert (notMem_erase _ _), this, mul_one]
+-/
 namespace lean_lectures
 
 def feb9Message : String :=
