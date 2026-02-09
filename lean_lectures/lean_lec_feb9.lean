@@ -15,13 +15,15 @@ Scratchpad / lecture file for Feb 9.
 ## 2. Next few mini-lectures
 ideally we have some formal proof, type theory, theory heavy lectures
 * speaker for type theory?
-* speaker for BLAH-BLAH correspondence
+* speaker for Curry-Howard correspondence
 
 -/
 
 /-
 ## 3. Natural Numbers Game Takeaways
 fun exercises, but somewhat painful to do. Mimics working with lean but feeds you the important tactics/theorems instead of you looking them up
+
+also there are several other games on that site
 
 Biggest takeaway
 ## TACTICS ##
@@ -64,6 +66,12 @@ other helpful tactics: `simp`
 
 ## 4. Caveats for the natural numbers game
 a lot of the time things are easier in lean because a lot of the work has already been done. For instance consider the below proof:
+
+for instance the tactic
+* `simp`,
+* `ring` which checks if two expressions are equal in general rings,
+* `omega` which tries to prove your inequality over the integers,
+* `linarithm` which tries to prove you inequlaities over fields
 -/
 
 def f : ℕ → ℕ
