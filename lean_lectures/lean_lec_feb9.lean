@@ -11,19 +11,25 @@ Scratchpad / lecture file for Feb 9.
 /-Logistics
 ## 1. Discuss goals for the study group
 
+* Check the proof of the infinitude of primes
+* Learn enough to be able to tell if interested in trying to formalize anything specific in work and how to do that
+* Developing tools for automating proofs / dealing with technical details
+* How does formal verification actually work?
+*
 
 ## 2. Next few mini-lectures
 ideally we have some formal proof, type theory, theory heavy lectures
 * speaker for type theory?
 * speaker for Curry-Howard correspondence
-
+* TODO: Resend links to mailing list
 -/
 
 /-
 ## 3. Natural Numbers Game Takeaways
-fun exercises, but somewhat painful to do. Mimics working with lean but feeds you the important tactics/theorems instead of you looking them up
+Fun exercises, but somewhat painful to do.
+Mimics working with lean but feeds you the important tactics/theorems instead of you looking them up.
 
-also there are several other games on that site
+Also there are several other games on that site.
 
 Biggest takeaway
 ## TACTICS ##
@@ -43,7 +49,8 @@ These tactics are “goal finishers” or “goal shapers”:
 
 
 
-/-The rewrite tactic `rw` replaces occurrences of the left-hand side of an equation with the right-hand side.
+/-The rewrite tactic `rw` replaces occurrences of the left-hand side of an equation
+with the right-hand side.
 
 Key patterns:
 * `rw [h]` rewrites in the goal.
@@ -85,22 +92,39 @@ def f : ℕ → ℕ
 #eval f 2
 #eval f 3
 
+/-
+A digression (skippable) to answer some questions.
+
+Just as there is a difference between considering a single natural number n ∈ ℕ versus the collection ℕ,
+there is a difference between a proof of a proposition and the proposition itself.
+A theorem is an /instance/ of an object whose type is given by the proposition.
+The proposition itself is of type `Prop`.
+-/
+
+-- A theorem that is obviously false
+def hi : ∀ n, n+1 = 2 := by sorry -- same as theorem hi : ∀ n, n+1 = 2 := by sorry
+#check hi -- hi is an object of type ∀ n, n+1 = 2
+-- The proposition that is the type of the theorem
+def hi_prop := ∀ n, n+1 = 2
+#check hi_prop -- hi_prop is of `Prop` type
+
 theorem f_eq_square : ∀ n, f n = n^2 := by
   intro m --introduces a variable m
   induction' m with m ihypo
   -- base case
-  ·rw [f]
-   simp?
+  · rw [f]
+    simp?
    -- simp? returns the theorems that simp used.  You can call
    -- simp only [...] to _only_ use some theorems in the simp algorithm:
    --simp only [ne_eq, OfNat.ofNat_ne_zero, not_false_eq_true, zero_pow]
   -- ind step
-  rw [f]
-  rw [ihypo]
-  ring
+  · rw [f]
+    rw [ihypo]
+    ring
   -- ring checks for identities in a general ring
 
 #check f_eq_square -- We can get VSCode to display the type of our theorem.
+#print f_eq_square -- Tactics build a proof term. #print lets you see the actual proof term, but this is a bit scary and you do not need this to prove things!
 
 /-
 ## 5. Harder proof: Show (p-1)! = -1 mod p
@@ -108,7 +132,8 @@ Here we will walk through a harder proof
 
 The claim is that in a domain with finitely many units, the product over all the units is -1.
 
-Our proof we will recreate: pair up all the elements  other than 1 and -1 via {x,x^{-1}}. Each product of those two elements is 1.
+Our proof we will recreate: pair up all the elements other than 1 and -1 via {x,x^{-1}}.
+Each product of those two elements is 1.
 
 In the mathlab library you can find this as theorem prod_univ_units_id_eq_neg_one
 -/
