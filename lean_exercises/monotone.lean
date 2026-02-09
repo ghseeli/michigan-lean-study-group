@@ -1,4 +1,6 @@
-/-This exercise is from https://people.math.harvard.edu/~pmwood/Teaching/2023sMath161/
+/-This collage of exercises was put together in https://people.math.harvard.edu/~pmwood/Teaching/2023sMath161/
+using exercises from the Mathematics in Lean online textbook
+
 -/
 
 import Mathlib.Tactic
