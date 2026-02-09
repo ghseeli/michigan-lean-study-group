@@ -19,6 +19,9 @@ Below are small theorems ("levels") whose proofs use *only* these tactics
 (and very basic core syntax).  Each proof is written step-by-step and every
 line is preceded by a short hint about what to do.
 
+# You will probably need to use the tactic reference for these exercises: https://lean-lang.org/doc/reference/latest/Tactic-Proofs/Tactic-Reference/ or google how to use some of the tactics
+
+
 If you want this file to line up *exactly* with the in-game statements,
 replace each `theorem LevelX_...` statement with the statement from the game;
 the proof scripts (and the style of hints) should transfer almost verbatim.
