@@ -9,6 +9,9 @@ A *Boolean* ring satisfies the additional property that for every `x`, `x^2 = x`
 You can read about Boolean rings here:
 https://en.wikipedia.org/wiki/Boolean_ring
 -/
+import Mathlib
+
+section boolean_ring_exercise
 
 variable {R : Type*} [Ring R]
 
@@ -29,7 +32,8 @@ So you will have to rely on theorems like `mul_add`, `add_mul`, etc. in the text
 theorem mul_idem (x : R) : x * x = x :=
 by rw [←pow_two, idem]
 
--- Unfortunately, you have to write `mul_idem idem` to use it.
+-- You have to write `mul_idem idem` to use it because it is a necessary input into `mul_idem`.
+#check mul_idem
 example (x y : R) : (x + y) * (x + y) = x + y :=
 by rw [mul_idem idem]
 
@@ -50,7 +54,7 @@ theorem add_self (x : R) : x + x = 0 := by
   rw [add_sub_cancel_right, sub_self] at h2
   exact h2
 
--- Note: again, to use this theorem you have to mention `idem` explicitly
+-- Note: again, to use this theorem you have to pass in `idem` explicitly
 example (y : R) : y + y = 0 :=
 add_self idem y
 
@@ -59,7 +63,7 @@ Prove `neg_eq_self` using the calculation `-x = 0 - x = x + x - x = x`. You can 
 `zero_sub` and `add_sub_cancel`, as well as `add_self idem`.
 -/
 
-theorem neg_eq_self (x : R) : -x = x := by
+theorem neg_eq_self_boolean_ring (x : R) : -x = x := by
   sorry
 
 /-
@@ -67,7 +71,7 @@ This is a corollary.
 -/
 
 theorem sub_eq_add (x y : R) : x - y = x + y := by
-  rw [sub_eq_add_neg, neg_eq_self idem]
+  rw [sub_eq_add_neg, neg_eq_self_boolean_ring idem]
 
 /-
 Prove this, using the calculation `x = x + y - y = 0 - y = -y = y`.
@@ -86,7 +90,7 @@ You can use the `abel` tactic to rearrange sums.
 example (x y : R) : x + x * y + y * x + y = x * y + y * x + x + y :=
 by abel
 
-theorem mul_comm (x y : R) : x * y = y * x := by
+theorem mul_comm_boolean_ring (x y : R) : x * y = y * x := by
   have h1 : 0 + (x + y) = (x * y + y * x) + (x + y) :=
   calc
     0 + (x + y) = (x + y)^2 := by

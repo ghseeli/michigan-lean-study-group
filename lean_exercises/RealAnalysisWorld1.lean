@@ -1,4 +1,4 @@
-/--
+/-
 # Real Analysis Game — World 1 (Lecture 1) cheat-sheet file
 
 This file is meant to mirror the **first world** of Alex Kontorovich's

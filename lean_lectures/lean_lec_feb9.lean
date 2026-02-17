@@ -3,7 +3,6 @@ import Mathlib.Tactic
 # lean_lec_feb9
 
 Scratchpad / lecture file for Feb 9.
-
 -/
 
 
@@ -78,7 +77,7 @@ for instance the tactic
 * `simp`,
 * `ring` which checks if two expressions are equal in general rings,
 * `omega` which tries to prove your inequality over the integers,
-* `linarithm` which tries to prove you inequlaities over fields
+* `linarith` which tries to prove you inequlaities over fields
 -/
 
 def f : ℕ → ℕ
