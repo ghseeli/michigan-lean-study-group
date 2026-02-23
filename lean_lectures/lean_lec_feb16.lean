@@ -1,7 +1,7 @@
 /-!
-# lean_lec_feb9
+# lean_lec_feb16
 
-Scratchpad / lecture file for Feb 9.
+Scratchpad / lecture file for Feb 16.
 -/
 
 /-
