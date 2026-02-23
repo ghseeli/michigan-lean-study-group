@@ -16,6 +16,7 @@ Depending on your comfort level with Lean tactics, the recommended order is
 2. monotone.lean
 3. boolean_rings.lean
 4. N_choose_2.lean
+5. infinitely_many_primes.lean
 
 ## 3. Challenges / what has been learned?
 -/
