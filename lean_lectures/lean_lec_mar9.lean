@@ -13,7 +13,7 @@ Scratchpad / lecture file for Mar 9.
 Ming presented on his approach to formalizing Coxeter groups in Lean with Mathlib.
 Following *Combinatorics of Coxeter Groups* by Bj\"orner--Brenti.
 
-
+Slides: `/assets/20260309-Ming-Lim-coxeter-groups-in-lean.pdf`
 Ming's Github repo: https://github.com/mlyean/lean-coxeter
 
 ## 2. Stone representation theorem (Patrick Lutz)
