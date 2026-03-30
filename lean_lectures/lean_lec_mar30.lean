@@ -11,7 +11,7 @@ Date: Monday, April 6, 2026
 Times:
 * 10am--2pm in EH 5822
 * 2pm--3pm in NUB 1507
-* After 3pm in Atrium
+* After 3pm in Atrium as people are interested
 Structure: show up and work on some project(s) together?
 Projects Google Sheet: https://docs.google.com/spreadsheets/d/1boIU3XJ07rNVmrLBNgH_IfAwTjXOF5uhW01WOJK8wk4/edit?usp=sharing
 
@@ -37,11 +37,16 @@ Projects Google Sheet: https://docs.google.com/spreadsheets/d/1boIU3XJ07rNVmrLBN
 #check Nat -- Inductive
 
 /-
-# An example
+# An example (by George)
 Goals: define Schur polynomials in 3 ways (Weyl character formula/bi-alternant identity, Jacobi-Trudi determinant, and generating function of semistandard Young tableaux)
 References: Macdonald's book on symmetric functions is a thorough reference; supplement with my own notes as necessary: https://ghseeli.github.io/grad-school-writings/class-notes/algebraic-combinatorics.pdf
 Previous work:
 * Some symmetric polynomials were implemented in Lean: https://leanprover-community.github.io/mathlib4_docs/Mathlib/RingTheory/MvPolynomial/Symmetric/Defs.html
 * Fundamental theorem of symmetric polynomials: https://leanprover-community.github.io/mathlib4_docs/Mathlib/RingTheory/MvPolynomial/Symmetric/FundamentalTheorem.html
-*
+* Some work on RSK in Lean: https://github.com/jakelev/lean-rsk
+* Vandermonde determinants exist! However, alternating polynomials do not as far as I can tell.
+-/
+#check Matrix.vandermonde
+/-
+
 -/
